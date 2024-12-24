@@ -1,0 +1,116 @@
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Containers */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+/* Buttons */
+button,
+input[type="submit"] {
+  background-color: #6200ea;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #3700b3;
+}
+
+/* Inputs & Textareas */
+input,
+textarea {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #6200ea;
+  outline: none;
+}
+
+/* Cards */
+.card {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Links */
+a {
+  color: #6200ea;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #3700b3;
+}
+
+form {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Vertically center the elements */
+  gap: 10px; /* Adds space between the input and button */
+  margin-bottom: 20px; /* Optional: Adds some spacing below the form */
+}
+
+/* Input field styling */
+input[type="text"] {
+  padding: 10px;
+  flex: 1; /* Allow input field to take the remaining space */
+}
+
+/* Button styling */
+button {
+  padding: 10px 20px;
+}
+
+#action-buttons {
+  justify-content: center;
+  gap: 1em;
+}

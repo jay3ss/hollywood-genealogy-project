@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='material.css') }}"
+    />
+    <script src="{{ url_for('static', filename='sse.js') }}" defer></script>
+  </head>
+
+  <body>
+    <div class="container card">
+      <h1 style="text-align: center">{{ header }}</h1>
+
+      <!-- Search Form -->
+      <form>
+        <input
+          type="text"
+          id="person"
+          name="person"
+          placeholder="Enter person"
+          aria-label="Enter name of person"
+          required
+        />
+        <button id="search-button">Search</button>
+      </form>
+
+      <!-- Action Buttons -->
+      <div id="action-buttons">
+        <button type="button" onclick="continueAction()">Continue</button>
+        <button type="button" onclick="pauseAction()">Pause</button>
+        <button type="button" onclick="cancelAction()">Cancel</button>
+      </div>
+
+      <!-- Container to display SSE updates -->
+      <div id="message-container" style="margin-top: 20px">
+        <h2>Results</h2>
+        <ul id="messages">
+          <!-- Messages will be appended here -->
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // Placeholder functions for button actions
+      function continueAction() {
+        alert("Continuing...");
+      }
+
+      function pauseAction() {
+        alert("Paused...");
+      }
+
+      function cancelAction() {
+        alert("Cancelled");
+      }
+    </script>
+  </body>
+</html>

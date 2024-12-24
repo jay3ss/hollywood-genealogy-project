@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  # Flask app service
+  app:
+    build: .
+    container_name: hollywood-genealogy-app
+    ports:
+      - "5000:5000" # Map port 5000 from container to host
+    environment:
+      WIKIPEDIA_API_URL: ${WIKIPEDIA_API_URL}
+      WIKIPEDIA_USER_AGENT: ${WIKIPEDIA_USER_AGENT}
+    volumes:
+      - .:/app # Mount the current directory to /app inside the container
+    depends_on:
+      - db # Ensure the DB starts before the app
+
+  # PostgreSQL service
+  db:
+    image: postgres:13
+    container_name: hollywood-genealogy-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432" # Default PostgreSQL port
+    volumes:
+      - pg_data:/var/lib/postgresql/data # Persist data in a named volume
+
+volumes:
+  pg_data:
