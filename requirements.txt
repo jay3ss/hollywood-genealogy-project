@@ -1,7 +1,9 @@
 alembic
 flask[async]
+flask-cors
 ipython
 ollama
+pydantic
 psycopg2-binary
 python-dotenv
 requests
