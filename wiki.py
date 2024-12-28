@@ -1,18 +1,13 @@
-import os
-
 import requests
-from dotenv import load_dotenv
 
-load_dotenv(".env")
-
-WIKIPEDIA_API_URL = os.environ.get("WIKIPEDIA_API_URL")
-WIKIPEDIA_USER_AGENT = os.environ.get("WIKIPEDIA_USER_AGENT")
+from config import config
 
 
 session = requests.Session()
 session.headers.update(
     {
-        "User-Agent": WIKIPEDIA_USER_AGENT,
+        # "User-Agent": WIKIPEDIA_USER_AGENT,
+        "User-Agent": config.wikipedia_user_agent,
     }
 )
 
@@ -27,7 +22,7 @@ def search_wiki(query: str) -> dict:
         # "User-Agent": WIKIPEDIA_USER_AGENT,
     }
 
-    response = session.get(WIKIPEDIA_API_URL, params=params)
+    response = session.get(config.wikipedia_api_url, params=params)
     response.raise_for_status()
     results = response.json()
 
