@@ -36,6 +36,15 @@ class AppConfig(BaseSettings):
         env_file = ".env"
         env_file_encoding = "utf-8"
 
+    @property
+    def postgres_url(self) -> str:
+        return (
+            f"postgres://{self.postgres_user}:"
+            f"{self.postgres_password}@{self.postgres_host}:"
+            f"{self.postgres_port}/{self.postgres_db}"
+        )
+
+
 try:
     config = AppConfig()
 except ValidationError as e:
