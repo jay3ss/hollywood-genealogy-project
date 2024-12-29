@@ -1,6 +1,7 @@
 import logging
 from dotenv import load_dotenv
-from pydantic import BaseSettings, Field, ValidationError
+from pydantic import Field, ValidationError
+from pydantic_settings import BaseSettings
 
 # Load environment variables from the .env file
 load_dotenv(".env")
