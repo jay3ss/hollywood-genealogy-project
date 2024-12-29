@@ -12,11 +12,12 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
         logging.FileHandler("config_errors.log"),  # Logs to a file
-        logging.StreamHandler()                   # Logs to the console
-    ]
+        logging.StreamHandler(),  # Logs to the console
+    ],
 )
 
 logger = logging.getLogger(__name__)
+
 
 # Define AppConfig class for configuration management
 class AppConfig(BaseSettings):
