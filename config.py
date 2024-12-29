@@ -58,6 +58,3 @@ except ValidationError as e:
         )
     # Re-raise the exception to stop execution if critical
     raise
-
-# Example usage
-print(f"Wikipedia API URL: {config.wikipedia_api_url}")
