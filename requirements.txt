@@ -4,6 +4,7 @@ flask-cors
 ipython
 ollama
 pydantic
+pydantic-settings
 psycopg2-binary
 python-dotenv
 requests
