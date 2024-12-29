@@ -28,7 +28,7 @@ class AppConfig(BaseSettings):
     postgres_password: str = Field(..., env="POSTGRES_PASSWORD")
     postgres_port: int = Field(..., env="POSTGRES_PORT")
     postgres_user: str = Field(..., env="POSTGRES_USER")
-    postgres_url: str = Field(..., env="POSTGRESS_URL")
+    postgres_url: str = Field(..., env="POSTGRES_URL")
     tmdb_api_key: str = Field(..., env="TMDB_API_KEY")
     tmdb_api_url: str = Field(..., env="TMDB_API_URL")
 
