@@ -1,4 +1,5 @@
 alembic
+beautifulsoup4
 flask[async]
 flask-cors
 ipython
@@ -9,3 +10,4 @@ psycopg2-binary
 python-dotenv
 requests
 sqlmodel
+wikitextparser

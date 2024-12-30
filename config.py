@@ -21,6 +21,7 @@ logger = logging.getLogger(__name__)
 
 # Define AppConfig class for configuration management
 class AppConfig(BaseSettings):
+    wikipedia_access_token: str = Field(..., env="WIKIPEDIA_ACCESS_TOKEN")
     wikipedia_api_url: str = Field(..., env="WIKIPEDIA_API_URL")
     wikipedia_user_agent: str = Field(..., env="WIKIPEDIA_USER_AGENT")
     postgres_db: str = Field(..., env="POSTGRES_DB")
