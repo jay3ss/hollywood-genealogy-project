@@ -1,14 +1,11 @@
 {
-    "name": "Python in Docker",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "app",
-    "workspaceFolder": "/app",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-python.python",
-                "ms-vscode-remote.remote-containers"
-            ]
-        }
+  "name": "Python in Docker",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-vscode-remote.remote-containers"]
     }
   }
+}
