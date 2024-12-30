@@ -1,13 +1,8 @@
 import asyncio
-import os
 
-from dotenv import load_dotenv
 from flask import Flask, Response, jsonify, render_template, request
 
 from wiki import search_wiki
-
-load_dotenv()
-
 
 app = Flask(__name__)
 
