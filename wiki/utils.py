@@ -1,37 +1,49 @@
 from functools import wraps
 
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, TypeAdapter, ValidationError
 
 
-def flatten_to_model(model: BaseModel):
+def flatten_to_schema(model: BaseModel):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
             raw_data = func(*args, **kwargs)
 
             def flatten(item):
+                # Extract fields present in the model
+                model_fields = model.model_fields.keys()
+                return {
+                    field: item.get(field, {}).get("value", None)
+                    for field in model_fields
+                }
+
+            if isinstance(raw_data, list):
+                # Flatten all items
+                flattened_data = [flatten(item) for item in raw_data]
+
+                # Prepare a TypeAdapter for a list of the model
+                model_adapter = TypeAdapter(list[model])
                 try:
-                    # Extract fields present in the model
-                    model_fields = model.model_fields.keys()
-                    flattened = {
-                        field: item.get(field, {}).get("value", None)
-                        for field in model_fields
-                    }
-                    # Validate with Pydantic model
-                    validated = model.model_validate(flattened)
-                    return validated.model_dump()
+                    # Batch validate all items
+                    validated_models = model_adapter.validate_python(flattened_data)
+                    # Convert validated models to dictionaries
+                    return [model.model_dump() for model in validated_models]
                 except ValidationError as e:
-                    # Log validation error
-                    print(f"Validation error for item {item}: {e}")
+                    # Log batch validation errors
+                    print(f"Batch validation error: {e}")
+                    return []
+
+            elif isinstance(raw_data, dict):
+                # Single item validation
+                flattened = flatten(raw_data)
+                try:
+                    validated_model = model.model_validate(flattened)
+                    return validated_model.model_dump()
+                except ValidationError as e:
+                    print(f"Validation error for single item: {e}")
                     return None
 
-            # Process list or single dict
-            if isinstance(raw_data, list):
-                return [
-                    result for item in raw_data if (result := flatten(item)) is not None
-                ]
-            elif isinstance(raw_data, dict):
-                return flatten(raw_data)
+            # If data is not a list or dict, return as is
             return raw_data
 
         return wrapper
