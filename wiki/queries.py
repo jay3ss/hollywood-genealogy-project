@@ -33,3 +33,16 @@ WHERE {{
   )
 }}
 """
+
+
+occupations_query = """
+SELECT ?occupation
+WHERE {{
+  wd:{entity_id} wdt:P106 ?job.
+  ?job rdfs:label ?occupation.
+
+  FILTER(LANG(?occupation) = "en")
+
+  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE] en". }}
+}}
+"""
