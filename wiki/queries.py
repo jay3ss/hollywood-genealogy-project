@@ -31,6 +31,8 @@ WHERE {{
   BIND(
     IF(STR(?relationship) = "relative" && BOUND(?kinshipLabel), ?kinshipLabel, ?relationship) AS ?relationshipType
   )
+
+  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE] en". }}
 }}
 """
 
