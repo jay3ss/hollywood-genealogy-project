@@ -21,10 +21,16 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-    # ports:
-    #   - "5432:5432" # Default PostgreSQL port
+    ports:
+      - "5432:5432" # Default PostgreSQL port
     volumes:
       - pg_data:/var/lib/postgresql/data # Persist data in a named volume
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
 
 volumes:
   pg_data:
