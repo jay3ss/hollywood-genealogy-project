@@ -33,6 +33,8 @@ class AppConfig(BaseSettings):
     postgres_user: str = Field(..., env="POSTGRES_USER")
     tmdb_api_key: str = Field(..., env="TMDB_API_KEY")
     tmdb_api_url: str = Field(..., env="TMDB_API_URL")
+    llm_model: str = Field(..., env="LLM_MODEL")
+    openai_api_key: str = Field(..., env="OPENAI_API_KEY")
 
     class Config:
         env_file = ".env"
