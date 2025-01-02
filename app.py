@@ -2,7 +2,7 @@ import asyncio
 
 from flask import Flask, Response, jsonify, render_template, request
 
-from wiki import search_wiki
+from wiki.wiki import search_wiki
 
 app = Flask(__name__)
 
