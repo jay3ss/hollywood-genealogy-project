@@ -18,3 +18,10 @@ class BiographicalInfo(BaseModel):
     gender: Optional[str] = None
     birth_place: Optional[str] = None
     biography: Optional[str] = None
+
+
+class School(BaseModel):
+    name: Optional[str]
+    city: Optional[str]
+    state_province: Optional[str]
+    country: Optional[str]

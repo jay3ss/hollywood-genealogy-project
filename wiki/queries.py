@@ -105,3 +105,40 @@ WHERE {{
   )
 }}
 """
+
+
+schools_info_query = """
+SELECT DISTINCT (?school as ?name) ?city ?state_province ?country
+WHERE {{
+  wd:{entity_id} wdt:P69 ?school_ent.  # Person's schools
+  ?school_ent rdfs:label ?school.
+  FILTER(LANG(?school) = "en")
+
+  OPTIONAL {{
+    ?school_ent wdt:P131 ?location_ent.  # Location of the school
+    ?location_ent rdfs:label ?city.
+    FILTER(LANG(?city) = "en")
+
+    # Try fetching the state or province directly from location hierarchy
+    OPTIONAL {{
+      ?location_ent wdt:P131* ?state_province_ent.  # Traverse up the hierarchy of locations to find state/province
+      ?state_province_ent wdt:P31/wdt:P279* wd:Q35657.  # Ensure it is a state or province
+      ?state_province_ent rdfs:label ?state_province.
+      FILTER(LANG(?state_province) = "en")
+    }}
+
+    # If state/province is not found, attempt to get the country
+    OPTIONAL {{
+      ?location_ent wdt:P17 ?country_ent.  # Country of the location
+      ?country_ent rdfs:label ?country.
+      FILTER(LANG(?country) = "en")
+    }}
+  }}
+
+  SERVICE wikibase:label {{
+    bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+  }}
+}}
+GROUP BY ?school ?city ?state_province ?country
+ORDER BY ASC(?school)
+"""
