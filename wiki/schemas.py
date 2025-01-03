@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -8,3 +10,11 @@ class Relationship(BaseModel):
 
 class Occupation(BaseModel):
     occupation: str
+
+
+class PersonalInfo(BaseModel):
+    birth_date: Optional[str] = None
+    death_date: Optional[str] = None
+    gender: Optional[str] = None
+    birth_place: Optional[str] = None
+    biography: Optional[str] = None
