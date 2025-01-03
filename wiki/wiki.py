@@ -1,12 +1,8 @@
 import requests
 
 from config import config
-from wiki.queries import (
-    family_tree_query,
-    occupations_query,
-    personal_information_query,
-)
-from wiki.schemas import Occupation, PersonalInfo, Relationship
+from wiki.queries import biographical_info_query, family_tree_query, occupations_query
+from wiki.schemas import BiographicalInfo, Occupation, Relationship
 from wiki.utils import flatten_to_schema
 
 session = requests.Session()
@@ -55,6 +51,6 @@ def fetch_occupations(entity_id: str) -> list:
     return fetch_from_wikidata(occupations_query.format(entity_id=entity_id))
 
 
-@flatten_to_schema(PersonalInfo)
-def fetch_personal_info(entity_id: str) -> list:
-    return fetch_from_wikidata(personal_information_query.format(entity_id=entity_id))
+@flatten_to_schema(BiographicalInfo)
+def fetch_biographical_info(entity_id: str) -> list:
+    return fetch_from_wikidata(biographical_info_query.format(entity_id=entity_id))

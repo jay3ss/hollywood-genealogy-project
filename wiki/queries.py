@@ -50,7 +50,7 @@ WHERE {{
 """
 
 
-personal_information_query = """
+biographical_info_query = """
 SELECT
   ?birth_date
   ?death_date

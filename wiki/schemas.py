@@ -12,7 +12,7 @@ class Occupation(BaseModel):
     occupation: str
 
 
-class PersonalInfo(BaseModel):
+class BiographicalInfo(BaseModel):
     birth_date: Optional[str] = None
     death_date: Optional[str] = None
     gender: Optional[str] = None
